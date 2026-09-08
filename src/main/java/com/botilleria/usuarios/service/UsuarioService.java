@@ -14,6 +14,7 @@ public class UsuarioService {
         listaDeUsuarios.add(new Usuario(1L, "admin", "admin123"));
         listaDeUsuarios.add(new Usuario(2L, "luis", "luis123"));
         listaDeUsuarios.add(new Usuario(3L, "l.uribe@duocuc.cl", "azure123"));
+        listaDeUsuarios.add(new Usuario(4L, "rod.ruiz@duocuc.cl", "azure123"));
     }
 
     public Usuario buscarPorNombre(String nombreUsuario) {
