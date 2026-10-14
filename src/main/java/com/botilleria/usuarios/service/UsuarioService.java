@@ -18,9 +18,16 @@ public class UsuarioService {
     }
 
     public Usuario buscarPorNombre(String nombreUsuario) {
-        return listaDeUsuarios.stream()
-                .filter(u -> u.getNombreUsuario().equals(nombreUsuario))
-                .findFirst()
-                .orElse(null);
+        for (Usuario u : listaDeUsuarios) {
+            if (u.getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
+                return u;
+            }
+        }
+        // Si entra un usuario nuevo de Cognito o Azure que no estaba en la lista,
+        // le asigna un ID correlativo y lo registra automáticamente al vuelo:
+        Long nuevoId = (long) (listaDeUsuarios.size() + 1);
+        Usuario nuevo = new Usuario(nuevoId, nombreUsuario, "cognito123");
+        listaDeUsuarios.add(nuevo);
+        return nuevo;
     }
 }
